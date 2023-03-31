@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#Refrence https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-2004
+wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-7.0
+
+
+#clone https://github.com/MohamedElsaiedElsakhawy/microservice-course.git
+# add jenkins in docker group $ sudo gpasswd -a $USER docker
+
+
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+
+
+
+#  dotnet restore  Catalog.Apis.csproj
+#  dotnet build Catalog.Apis.csproj
+#  dotnet publish Catalog.Apis.csproj
